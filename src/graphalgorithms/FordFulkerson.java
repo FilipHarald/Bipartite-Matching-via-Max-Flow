@@ -24,7 +24,6 @@ public class FordFulkerson {
 			edgesInAugmentingPath = residualGraph.findAugmentingPath(source, sink);
 			augmentingPathCapacity = Integer.MAX_VALUE;
 			System.out.println("\n" + edgesInAugmentingPath);
-			System.out.println(edgesInAugmentingPath.size());
 		}
 		
 		return graph.getEdgesWithFlow();
