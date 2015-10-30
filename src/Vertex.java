@@ -1,6 +1,6 @@
 public class Vertex {
-	String name;
-	boolean visited;
+	private String name;
+	private boolean visited;
 	
 	public Vertex(String name){
 		this.name = name;

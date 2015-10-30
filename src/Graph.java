@@ -3,8 +3,8 @@ import java.util.LinkedList;
 
 public class Graph {
 	
-	HashMap<Vertex, LinkedList<Vertex>> adjacencyMap;
-	Edge[] edges;
+	private HashMap<Vertex, LinkedList<Vertex>> adjacencyMap;
+	private Edge[] edges;
 	
 	public Graph(Edge[] edges) {
 		this.edges = edges;

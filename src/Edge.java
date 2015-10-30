@@ -1,9 +1,9 @@
 
 public class Edge {
-	Vertex start;
-	Vertex end;
-	int capacity;
-	int flow;
+	private Vertex start;
+	private Vertex end;
+	private int capacity;
+	private int flow;
 	
 
 	public Edge(Vertex start, Vertex end, int capacity) {
