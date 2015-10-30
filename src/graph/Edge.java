@@ -1,25 +1,25 @@
 package graph;
 
 public class Edge {
-	private Vertex start;
-	private Vertex end;
+	private Vertex from;
+	private Vertex to;
 	private int capacity;
 	private int flow;
 	
 
 	public Edge(Vertex start, Vertex end, int capacity) {
-		this.start = start;
-		this.end = end;
+		this.from = start;
+		this.to = end;
 		this.capacity = capacity;
 		flow = 0;
 	}
 	
-	public Vertex getStart() {
-		return start;
+	public Vertex getFrom() {
+		return from;
 	}
 	
-	public Vertex getEnd() {
-		return end;
+	public Vertex getTo() {
+		return to;
 	}
 	
 	public int getCapacity() {
@@ -39,11 +39,11 @@ public class Edge {
 	}
 	
 	public Edge getResidualEdge(){
-		return (new Edge(start, end, getCapacityFlowDifference()));
+		return (new Edge(from, to, getCapacityFlowDifference()));
 	}
 	
 	public Edge getAntiParallelEdge(){
-		return (new Edge(end, start, flow));
+		return (new Edge(to, from, flow));
 	}
 
 }

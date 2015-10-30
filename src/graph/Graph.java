@@ -1,42 +1,51 @@
 package graph;
+
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 
 public class Graph {
-	
-	private HashMap<Vertex, LinkedList<Vertex>> adjacencyMap;
-	private Edge[] edges;
-	
-	public Graph(Edge[] edges) {
-		this.edges = edges;
-		createAdjacencyMap();
+
+	private HashMap<Vertex, LinkedList<Edge>> adjacencyMap;
+
+	public Graph(HashMap<Vertex, LinkedList<Edge>> adjacencyMap) {
+		this.adjacencyMap = adjacencyMap;
 	}
-	
-	public void createAdjacencyMap(){
-		//TODO For now this method only adds adjacent Vertices in one direction. Don't know if it's correct.
-		adjacencyMap = new HashMap<Vertex, LinkedList<Vertex>>();
-		for(Edge e : edges){
-			Vertex start = e.getStart();
-			//For every start Vertex that DOES NOT already exist in adjacencyMap
-			if(!adjacencyMap.containsKey(start)){
-				//Add it to to adjacencyMap with an empty LinkedList
-				adjacencyMap.put(start, new LinkedList<Vertex>());				
+
+	public Graph getResidualGraph() {
+		Set<Map.Entry<Vertex, LinkedList<Edge>>> adjacencySet = adjacencyMap
+				.entrySet();
+		HashMap<Vertex, LinkedList<Edge>> residualEdges = new HashMap<Vertex, LinkedList<Edge>>();
+
+		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet) {
+			LinkedList<Edge> adjacencyEdges = new LinkedList<Edge>();
+
+			for (Edge e : entry.getValue()) {
+				if (e.getCapacityFlowDifference() != 0)
+					adjacencyEdges.add(e.getResidualEdge());
+
+				adjacencyEdges.add(e.getAntiParallelEdge());
 			}
+
+			residualEdges.put(entry.getKey(), adjacencyEdges);
 		}
-		for(Edge e : edges){
-			//For every start Vertex, add it's correlating end Vertex to the starts LinkedList
-			adjacencyMap.get(e.getStart()).push(e.getEnd());
+
+		return new Graph(adjacencyMap);
+	}
+
+	public LinkedList<Edge> findAugmentingPath() {
+
+		return null;
+	}
+
+	public void setEdgesFlowToZero() {
+		for (Edge e : edges) {
+			e.setFlow(0);
 		}
 	}
-	
-	public Graph getResidualGraph(){
-		LinkedList<Edge> residualEdges = new LinkedList<Edge>();
-		for(Edge e : edges){
-			if(e.getCapacityFlowDifference() != 0){
-				residualEdges.add(e.getResidualEdge());
-			}
-			residualEdges.add(e.getAntiParallelEdge());
-		}
-		return new Graph(residualEdges.toArray(new Edge[residualEdges.size()]));
+
+	public void addFlowToPath(LinkedList<Edge> path) {
+
 	}
 }
