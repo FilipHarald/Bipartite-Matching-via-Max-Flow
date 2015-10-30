@@ -5,11 +5,9 @@ public class Graph {
 	
 	HashMap<Vertex, LinkedList<Vertex>> adjacencyMap;
 	Edge[] edges;
-	Vertex[] vertecies;
 	
-	public Graph(Edge[] edges,Vertex[] vertecies) {
+	public Graph(Edge[] edges) {
 		this.edges = edges;
-		this.vertecies = vertecies;
 		createAdjacencyMap();
 	}
 	
@@ -31,6 +29,13 @@ public class Graph {
 	}
 	
 	public Graph getResidualGraph(){
-		return null;
+		LinkedList<Edge> residualEdges = new LinkedList<Edge>();
+		for(Edge e : edges){
+			if((e.getCapacity() - e.getFlow()) != 0){
+				residualEdges.add(new Edge(e.getStart(), e.getEnd(), e.getCapacity() - e.getFlow()));
+			}
+			residualEdges.add(new Edge(e.getEnd(), e.getStart(), e.getFlow()));
+		}
+		return new Graph(residualEdges.toArray(new Edge[residualEdges.size()]));
 	}
 }
