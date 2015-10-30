@@ -31,10 +31,10 @@ public class Graph {
 	public Graph getResidualGraph(){
 		LinkedList<Edge> residualEdges = new LinkedList<Edge>();
 		for(Edge e : edges){
-			if((e.getCapacity() - e.getFlow()) != 0){
-				residualEdges.add(new Edge(e.getStart(), e.getEnd(), e.getCapacity() - e.getFlow()));
+			if(e.getCapacityFlowDifference() != 0){
+				residualEdges.add(e.getResidualEdge());
 			}
-			residualEdges.add(new Edge(e.getEnd(), e.getStart(), e.getFlow()));
+			residualEdges.add(e.getAntiParallelEdge());
 		}
 		return new Graph(residualEdges.toArray(new Edge[residualEdges.size()]));
 	}

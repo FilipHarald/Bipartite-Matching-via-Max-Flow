@@ -32,5 +32,17 @@ public class Edge {
 	public void setFlow(int flow) {
 		this.flow = flow;
 	}
+	
+	public int getCapacityFlowDifference(){
+		return capacity - flow;
+	}
+	
+	public Edge getResidualEdge(){
+		return (new Edge(start, end, getCapacityFlowDifference()));
+	}
+	
+	public Edge getAntiParallelEdge(){
+		return (new Edge(end, start, flow));
+	}
 
 }
