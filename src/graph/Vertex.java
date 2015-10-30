@@ -6,6 +6,7 @@ public class Vertex {
 		this.name = name;
 	}
 	
+
 	public String getName() {
 		return name;
 	}
@@ -21,5 +22,9 @@ public class Vertex {
 		}else{			
 			return super.equals(obj);
 		}
+	}
+	@Override
+	public String toString() {
+		return "Vertex [name=" + name + "]";
 	}
 }

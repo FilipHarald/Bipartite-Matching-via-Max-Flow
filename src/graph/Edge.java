@@ -7,9 +7,9 @@ public class Edge {
 	private int flow;
 	
 
-	public Edge(Vertex start, Vertex end, int capacity) {
-		this.from = start;
-		this.to = end;
+	public Edge(Vertex from, Vertex to, int capacity) {
+		this.from = from;
+		this.to = to;
 		this.capacity = capacity;
 		flow = 0;
 	}
@@ -34,6 +34,10 @@ public class Edge {
 		this.flow = flow;
 	}
 	
+	public void addFlow(int flow) {
+		this.flow += flow;
+	}
+	
 	public int getCapacityFlowDifference(){
 		return capacity - flow;
 	}
@@ -42,8 +46,15 @@ public class Edge {
 		return (new Edge(from, to, getCapacityFlowDifference()));
 	}
 	
+
 	public Edge getAntiParallelEdge(){
 		return (new Edge(to, from, flow));
+	}
+	
+	@Override
+	public String toString() {
+		return "Edge [from=" + from + ", to=" + to + ", capacity=" + capacity
+				+ ", flow=" + flow + "]";
 	}
 
 }
