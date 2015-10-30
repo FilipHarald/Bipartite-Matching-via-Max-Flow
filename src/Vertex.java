@@ -1,8 +1,18 @@
 public class Vertex {
 	String name;
-
+	boolean visited;
+	
 	public Vertex(String name){
 		this.name = name;
+		visited = false;
+	}
+	
+	public boolean getVisited(){
+		return visited;
+	}
+	
+	public void setVisited(boolean visited){
+		this.visited = visited;
 	}
 	
 	public String getName() {
