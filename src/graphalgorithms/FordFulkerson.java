@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import graph.*;
 
 public class FordFulkerson {
-	
 	public static LinkedList<Edge> runAlgorithm(Graph graph, Vertex source, Vertex sink) {
 		graph.setEdgesFlowToZero();
 		
@@ -23,7 +22,6 @@ public class FordFulkerson {
 			edgesInAugmentingPath = residualGraph.findAugmentingPath(source, sink);
 			augmentingPathCapacity = Integer.MAX_VALUE;
 		}
-		System.out.println(graph);
 		
 		return graph.getEdgesWithFlow();
 	}

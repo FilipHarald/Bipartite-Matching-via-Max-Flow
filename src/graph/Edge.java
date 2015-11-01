@@ -8,7 +8,7 @@ public class Edge {
 
 
 	/**
-	 * Creates a new Edge between to vertices.
+	 * Creates a new Edge between two vertices.
 	 * @param from The starting vertex.
 	 * @param to The ending vertex.
 	 * @param capacity The capacity of the edge.
@@ -19,7 +19,12 @@ public class Edge {
 		this.capacity = capacity;
 		flow = 0;
 	}
-	
+
+	/**
+	 * Creates a new Edge between two vertices, with the capacity and flow of zero.
+	 * @param from The starting vertex.
+	 * @param to The ending vertex.
+	 */
 	public Edge(Vertex from, Vertex to) {
 		this.from = from;
 		this.to = to;

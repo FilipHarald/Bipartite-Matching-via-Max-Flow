@@ -18,8 +18,7 @@ public class Graph {
 	/**
 	 * Creates a new graph with the supplied vertices and edges.
 	 * 
-	 * @param adjacencyMap
-	 *            A HashMap holding the vertices and edges of the graph.
+	 * @param adjacencyMap A HashMap holding the vertices and edges of the graph.
 	 */
 	public Graph(HashMap<Vertex, LinkedList<Edge>> adjacencyMap) {
 		this.adjacencyMap = adjacencyMap;
@@ -60,8 +59,7 @@ public class Graph {
 	/**
 	 * Adds an edge to the graph.
 	 * 
-	 * @param edge
-	 *            The edge to add.
+	 * @param edge The edge to add.
 	 */
 	public void addEdge(Edge edge) {
 		if (adjacencyMap.containsKey(edge.getFrom())) {
@@ -83,12 +81,9 @@ public class Graph {
 	/**
 	 * Finds the augmenting path of a graph.
 	 * 
-	 * @param source
-	 *            The source
-	 * @param sink
-	 *            The sink
-	 * @return A LinkedList containing edges that represents the augmenting
-	 *         path.
+	 * @param source The source
+	 * @param sink The sink
+	 * @return A LinkedList containing edges that represents the augmenting path.
 	 */
 	public LinkedList<Edge> findAugmentingPath(Vertex source, Vertex sink) {
 		LinkedList<Vertex> visitedVertecies = new LinkedList<Vertex>();
@@ -100,15 +95,10 @@ public class Graph {
 	/**
 	 * A method called recursively to find the augmenting path of the graph.
 	 * 
-	 * @param current
-	 *            The current vertex.
-	 * @param sink
-	 *            The sink.
-	 * @param visitedVertices
-	 *            A list containing the vertices that has already been visited.
-	 * @param edgesInPath
-	 *            A list containing the edges in the (not-yet-complete)
-	 *            augmenting path.
+	 * @param current The current vertex.
+	 * @param sink The sink.
+	 * @param visitedVertices A list containing the vertices that has already been visited.
+	 * @param edgesInPath A list containing the edges in the (not-yet-complete) augmenting path.
 	 * @return True if an edge was added to the path, otherwise false.
 	 */
 	private boolean findAugmentingPath(Vertex current, Vertex sink,
@@ -165,10 +155,8 @@ public class Graph {
 	/**
 	 * Adds flow to a path of edges.
 	 * 
-	 * @param path
-	 *            The path to add flow to.
-	 * @param augmentingPathCapacity
-	 *            The capacity of an augmenting path.
+	 * @param path The path to add flow to.
+	 * @param augmentingPathCapacity The capacity of an augmenting path.
 	 */
 	public void addFlowToPath(LinkedList<Edge> path, int augmentingPathCapacity) {
 		for (Edge e : path) {

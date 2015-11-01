@@ -28,9 +28,7 @@ public class BipartiteMatching {
 		}
 
 		g.generateAdjacencySet();
-		System.out.println("Begin FordFulkerson");
 		LinkedList<Edge> edgesWithFlow = FordFulkerson.runAlgorithm(g, s, t);
-		System.out.println("End FordFulkerson");
 
 		Edge[] edgeArray = edgesWithFlow
 				.toArray(new Edge[edgesWithFlow.size()]);
