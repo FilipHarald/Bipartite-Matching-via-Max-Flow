@@ -101,8 +101,7 @@ public class Graph {
 	 * @param edgesInPath A list containing the edges in the (not-yet-complete) augmenting path.
 	 * @return True if an edge was added to the path, otherwise false.
 	 */
-	private boolean findAugmentingPath(Vertex current, Vertex sink,
-			LinkedList<Vertex> visitedVertices, LinkedList<Edge> edgesInPath) {
+	private boolean findAugmentingPath(Vertex current, Vertex sink, LinkedList<Vertex> visitedVertices, LinkedList<Edge> edgesInPath) {
 		visitedVertices.add(current);
 		if (current.equals(sink)) {
 			return true;
