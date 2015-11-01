@@ -5,6 +5,9 @@ import graphalgorithms.*;
 
 import java.util.LinkedList;
 
+/**
+ * @author Filip Harald & Andreas Indal
+ */
 public class BipartiteMatchingTest {
 	public static void main(String[] args) {
 		Vertex[] v = new Vertex[9];

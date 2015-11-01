@@ -2,6 +2,8 @@ package graph;
 
 /**
  * A class representing a vertex in a graph.
+ *
+ * @author Filip Harald & Andreas Indal
  */
 public class Vertex {
 	private String name;

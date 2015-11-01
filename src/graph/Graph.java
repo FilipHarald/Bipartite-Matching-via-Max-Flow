@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Represents a graph holding vertices and edges.
  * 
- * @authors Filip Harald & Andreas Indal
+ * @author Filip Harald & Andreas Indal
  */
 public class Graph {
 

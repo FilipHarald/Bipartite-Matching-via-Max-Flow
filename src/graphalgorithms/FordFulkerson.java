@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 import graph.*;
 
+/**
+ * @author Filip Harald & Andreas Indal
+ */
 public class FordFulkerson {
 	public static LinkedList<Edge> runAlgorithm(Graph graph, Vertex source, Vertex sink) {
 		graph.setEdgesFlowToZero();

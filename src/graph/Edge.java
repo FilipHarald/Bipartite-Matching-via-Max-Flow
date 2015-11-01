@@ -1,5 +1,10 @@
 package graph;
 
+/**
+ * A class representing an edge between to vertices in a graph.
+ *
+ * @author Filip Harald & Andreas Indal
+ */
 public class Edge {
 	private Vertex from;
 	private Vertex to;

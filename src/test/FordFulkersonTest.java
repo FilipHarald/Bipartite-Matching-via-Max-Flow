@@ -7,6 +7,9 @@ import java.util.List;
 import graph.*;
 import graphalgorithms.FordFulkerson;
 
+/**
+ * @author Filip Harald & Andreas Indal
+ */
 public class FordFulkersonTest {
 	public static void main(String[] args) {
 		HashMap<Vertex, LinkedList<Edge>> lol = new HashMap<Vertex, LinkedList<Edge>>();

@@ -5,6 +5,9 @@ import graph.*;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+/**
+ * @author Filip Harald & Andreas Indal
+ */
 public class BipartiteMatching {
 	public static LinkedList<Edge> runAlgorithm(LinkedList<Edge> bipartiteEdges) {
 		Vertex s = new Vertex("Source");
