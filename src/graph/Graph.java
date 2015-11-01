@@ -7,6 +7,7 @@ import java.util.Set;
 
 /**
  * Represents a graph holding vertices and edges.
+ * 
  * @authors Filip Harald & Andreas Indal
  */
 public class Graph {
@@ -16,7 +17,9 @@ public class Graph {
 
 	/**
 	 * Creates a new graph with the supplied vertices and edges.
-	 * @param adjacencyMap A HashMap holding the vertices and edges of the graph.
+	 * 
+	 * @param adjacencyMap
+	 *            A HashMap holding the vertices and edges of the graph.
 	 */
 	public Graph(HashMap<Vertex, LinkedList<Edge>> adjacencyMap) {
 		this.adjacencyMap = adjacencyMap;
@@ -31,12 +34,14 @@ public class Graph {
 	}
 
 	/**
-	 * Creates a new residual graph from the the vertices and edges the current graph is holding.
+	 * Creates a new residual graph from the the vertices and edges the current
+	 * graph is holding.
+	 * 
 	 * @return The new residual graph.
 	 */
 	public Graph getResidualGraph() {
 		Graph g = new Graph();
-		
+
 		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet) {
 			LinkedList<Edge> adjacencyEdges = new LinkedList<Edge>();
 
@@ -48,13 +53,15 @@ public class Graph {
 			}
 		}
 		g.generateAdjacencySet();
-		
+
 		return g;
 	}
 
 	/**
 	 * Adds an edge to the graph.
-	 * @param edge The edge to add.
+	 * 
+	 * @param edge
+	 *            The edge to add.
 	 */
 	public void addEdge(Edge edge) {
 		if (adjacencyMap.containsKey(edge.getFrom())) {
@@ -75,9 +82,13 @@ public class Graph {
 
 	/**
 	 * Finds the augmenting path of a graph.
-	 * @param source The source
-	 * @param sink The sink
-	 * @return A LinkedList containing edges that represents the augmenting path.
+	 * 
+	 * @param source
+	 *            The source
+	 * @param sink
+	 *            The sink
+	 * @return A LinkedList containing edges that represents the augmenting
+	 *         path.
 	 */
 	public LinkedList<Edge> findAugmentingPath(Vertex source, Vertex sink) {
 		LinkedList<Vertex> visitedVertecies = new LinkedList<Vertex>();
@@ -88,13 +99,20 @@ public class Graph {
 
 	/**
 	 * A method called recursively to find the augmenting path of the graph.
-	 * @param current The current vertex.
-	 * @param sink The sink.
-	 * @param visitedVertices A list containing the vertices that has already been visited.
-	 * @param edgesInPath A list containing the edges in the (not-yet-complete) augmenting path.
+	 * 
+	 * @param current
+	 *            The current vertex.
+	 * @param sink
+	 *            The sink.
+	 * @param visitedVertices
+	 *            A list containing the vertices that has already been visited.
+	 * @param edgesInPath
+	 *            A list containing the edges in the (not-yet-complete)
+	 *            augmenting path.
 	 * @return True if an edge was added to the path, otherwise false.
 	 */
-	private boolean findAugmentingPath(Vertex current, Vertex sink, LinkedList<Vertex> visitedVertices, LinkedList<Edge> edgesInPath) {
+	private boolean findAugmentingPath(Vertex current, Vertex sink,
+			LinkedList<Vertex> visitedVertices, LinkedList<Edge> edgesInPath) {
 		visitedVertices.add(current);
 		if (current.equals(sink)) {
 			return true;
@@ -103,12 +121,13 @@ public class Graph {
 			if (neighbourEdges != null) {
 				for (Edge e : neighbourEdges) {
 					if (!visitedVertices.contains(e.getTo())) {
-						if (findAugmentingPath(e.getTo(), sink, visitedVertices, edgesInPath)) {
+						if (findAugmentingPath(e.getTo(), sink,
+								visitedVertices, edgesInPath)) {
 							edgesInPath.add(e);
 							return true;
 						}
 					}
-				}				
+				}
 			}
 		}
 		return false;
@@ -120,21 +139,24 @@ public class Graph {
 	public void setEdgesFlowToZero() {
 		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet) {
 			for (Edge e : entry.getValue()) {
-			
+
 				e.setFlow(0);
 			}
 		}
 	}
 
 	/**
-	 * Returns a linked list containing all the edges of the graph with a flow higher than zero.
+	 * Returns a linked list containing all the edges of the graph with a flow
+	 * higher than zero.
+	 * 
 	 * @return A linked list of edges.
 	 */
-	public LinkedList<Edge> getEdgesWithFlow(){
+	public LinkedList<Edge> getEdgesWithFlow() {
 		LinkedList<Edge> edgeList = new LinkedList<Edge>();
 		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet) {
 			for (Edge e : entry.getValue()) {
-				if (e.getFlow() > 0) edgeList.add(e);
+				if (e.getFlow() > 0)
+					edgeList.add(e);
 			}
 		}
 		return edgeList;
@@ -142,22 +164,27 @@ public class Graph {
 
 	/**
 	 * Adds flow to a path of edges.
-	 * @param path The path to add flow to.
-	 * @param augmentingPathCapacity The capacity of an augmenting path.
+	 * 
+	 * @param path
+	 *            The path to add flow to.
+	 * @param augmentingPathCapacity
+	 *            The capacity of an augmenting path.
 	 */
 	public void addFlowToPath(LinkedList<Edge> path, int augmentingPathCapacity) {
-		for (Edge e : path) {	
+		for (Edge e : path) {
 			for (Edge neighbourEdge : adjacencyMap.get(e.getFrom())) {
 				if (neighbourEdge.getTo().equals(e.getTo())) {
 					neighbourEdge.addFlow(augmentingPathCapacity);
-				} 
-			}
-			for (Edge neighbourEdge : adjacencyMap.get(e.getTo())) {
-				if(neighbourEdge.getTo().equals(e.getFrom())) {
-					neighbourEdge.addFlow(-augmentingPathCapacity);
 				}
 			}
-
+			//The sink node does not exist in the HashMap null-checker is necessary
+			if(adjacencyMap.get(e.getTo()) != null){ 			
+				for (Edge neighbourEdge : adjacencyMap.get(e.getTo())) {
+					if (neighbourEdge.getTo().equals(e.getFrom())) {
+						neighbourEdge.addFlow(-augmentingPathCapacity);
+					}
+				}
+			}
 		}
 	}
 
@@ -166,10 +193,9 @@ public class Graph {
 		String s = "";
 		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet) {
 			for (Edge e : entry.getValue()) {
-				s += "\n key: " + entry.getKey() + "          value :"+ e;
+				s += "\n key: " + entry.getKey() + "          value :" + e;
 			}
 		}
 		return s;
 	}
 }
-

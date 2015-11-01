@@ -19,6 +19,13 @@ public class Edge {
 		this.capacity = capacity;
 		flow = 0;
 	}
+	
+	public Edge(Vertex from, Vertex to) {
+		this.from = from;
+		this.to = to;
+		capacity = 0;
+		flow = 0;
+	}
 
 	/**
 	 * Returns the vertex from which the edge starts.
