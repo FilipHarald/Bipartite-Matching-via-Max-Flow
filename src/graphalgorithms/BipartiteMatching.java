@@ -33,6 +33,12 @@ public class BipartiteMatching {
 		g.generateAdjacencySet();
 		LinkedList<Edge> edgesWithFlow = FordFulkerson.runAlgorithm(g, s, t);
 
+
+		if (!g.isBipartite()) {
+			return new LinkedList<Edge>();
+		}
+
+
 		Edge[] edgeArray = edgesWithFlow
 				.toArray(new Edge[edgesWithFlow.size()]);
 		LinkedList<Edge> bipartiteMatchedEdges = new LinkedList<Edge>();

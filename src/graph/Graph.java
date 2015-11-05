@@ -175,6 +175,19 @@ public class Graph {
 		}
 	}
 
+	public boolean isBipartite() {
+		LinkedList<Vertex> x = new LinkedList<Vertex>();
+		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet)
+			x.add(entry.getKey());
+
+		for (Map.Entry<Vertex, LinkedList<Edge>> entry : adjacencySet)
+			for (Edge e : entry.getValue())
+				if (x.contains(e.getTo()))
+					return false;
+
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		String s = "";
